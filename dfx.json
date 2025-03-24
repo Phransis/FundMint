@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "FundMint_backend": {
+      "main": "src/FundMint_backend/main.mo",
+      "type": "motoko"
+    },
+    "FundMint_frontend": {
+      "dependencies": [
+        "FundMint_backend"
+      ],
+      "source": [
+        "src/FundMint_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "FundMint_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
