@@ -11,29 +11,7 @@ function Campaigns() {
   const [milestone, setMilestone] = useState("");
   const [campaignId, setCampaignId] = useState("");
   const [amount, setAmount] = useState("");
-  // const [campaignDetails, setCampaignDetails] = useState(null);
-  // const [campaignIdToWithdraw, setCampaignIdToWithdraw] = useState('');
-  // const [campaignIdToRefund, setCampaignIdToRefund] = useState('');
-  // const [campaignIdToGetDetails, setCampaignIdToGetDetails] = useState('');
-  // const [campaignIdToGetRefund, setCampaignIdToGetRefund] = useState('');
-  // const [campaignIdToContribute, setCampaignIdToContribute] = useState('');
-  // const [amountToContribute, setAmountToContribute] = useState('');
-  // const [campaignIdToWithdrawFunds, setCampaignIdToWithdrawFunds] = useState('');
-  // const [amountToWithdraw, setAmountToWithdraw] = useState('');
-  // const [campaignIdToGetRefundDetails, setCampaignIdToGetRefundDetails] = useState('');
-  // const [amountToGetRefund, setAmountToGetRefund] = useState('');
-  // const [campaignIdToGetDetailsInfo, setCampaignIdToGetDetailsInfo] = useState('');
-  // const [campaignIdToGetRefundInfo, setCampaignIdToGetRefundInfo] = useState('');
-  // const [campaignIdToContributeInfo, setCampaignIdToContributeInfo] = useState('');
-  // const [campaignIdToWithdrawFundsInfo, setCampaignIdToWithdrawFundsInfo] = useState('');
-  // const [campaignIdToGetRefundDetailsInfo, setCampaignIdToGetRefundDetailsInfo] = useState('');
-  // const [campaignIdToGetRefundInfoDetails, setCampaignIdToGetRefundInfoDetails] = useState('');
-  // const [campaignIdToContributeInfoDetails, setCampaignIdToContributeInfoDetails] = useState('');
-  // const [campaignIdToWithdrawFundsInfoDetails, setCampaignIdToWithdrawFundsInfoDetails] = useState('');
-  // const [campaignIdToGetRefundDetailsInfoDetails, setCampaignIdToGetRefundDetailsInfoDetails] = useState('');
-  // const [campaignIdToGetRefundInfoDetailsInfo, setCampaignIdToGetRefundInfoDetailsInfo] = useState('');
-  // const [campaignIdToContributeInfoDetailsInfo, setCampaignIdToContributeInfoDetailsInfo] = useState('');
-  // const [campaignIdToWithdrawFundsInfoDetailsInfo, setCampaignIdToWithdrawFundsInfoDetailsInfo] = useState('');
+
 
   async function getCampaigns() {
     try {
