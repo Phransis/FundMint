@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FundMint_backend } from "declarations/FundMint_backend";
+import DonateToCampaign from "../components/Donate";
 
 function Campaigns() {
   const [campaigns, setCampaigns] = useState([]);
@@ -11,7 +12,6 @@ function Campaigns() {
   const [milestone, setMilestone] = useState("");
   const [campaignId, setCampaignId] = useState("");
   const [amount, setAmount] = useState("");
-
 
   async function getCampaigns() {
     try {
@@ -67,7 +67,6 @@ function Campaigns() {
           <img src="/logo2.svg" alt="DFINITY Logo" className="h-16" />
           <h1 className="text-3xl font-bold">FundMint DApp</h1>
         </header>
-
         {/* Campaigns Section */}
         <section className="mb-10 bg-white shadow-md rounded-lg p-6">
           <div className="flex justify-between items-center mb-4">
@@ -94,6 +93,7 @@ function Campaigns() {
                     <th className="px-4 py-2">Deadline</th>
                     <th className="px-4 py-2">Balance</th>
                     <th className="px-4 py-2">State</th>
+                    <th className="px-4 py-2">View</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -133,6 +133,14 @@ function Campaigns() {
                       <td className="border border-gray-300 p-2">
                         {campaign.isClosed ? "Closed" : "Open"}
                       </td>
+                      <td className="border border-gray-300 p-2">
+                        <a
+                          href={`/campaign/${campaign.id}`}
+                          className="text-blue-500 hover:underline"
+                        >
+                          View
+                        </a>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -143,13 +151,6 @@ function Campaigns() {
           )}
         </section>
 
-        {/* <form >
-          <input type="text" placeholder="title" value={title} />
-          <input type="text" placeholder="description" value={description} />
-          <input type="text" placeholder="target" value={target} />
-          <input type="text" placeholder="deadline" value={deadline} />
-          <input type="text" placeholder="milestone" value={milestone} />
-        </form > */}
         {campaigns.map((campaign, idx) => (
           <div
             key={campaign.id || idx}
@@ -190,102 +191,40 @@ function Campaigns() {
           </div>
         ))}
 
-        <form>
-          <input type="text" placeholder="title" value={title} />
-          <input type="text" placeholder="description" value={description} />
-          <input type="text" placeholder="target" value={target} />
-          <input type="text" placeholder="deadline" value={deadline} />
-          <input type="text" placeholder="milestone" value={milestone} />
-        </form>
 
-        {/* Create Campaign */}
-        <FormSection
-          title="Create Campaign"
-          inputs={[{ id: "goal", label: "Goal", type: "number" }]}
-          onSubmit={(e) => {
-            e.preventDefault();
-            // handle create campaign
-          }}
-          buttonText="Create Campaign"
-        />
 
-        {/* Contribute */}
-        <FormSection
-          title="Contribute to Campaign"
-          inputs={[
-            { id: "campaignId", label: "Campaign ID", type: "number" },
-            { id: "amount", label: "Amount", type: "number" },
-          ]}
-          onSubmit={(e) => {
-            e.preventDefault();
-            // handle contribute
-          }}
-          buttonText="Contribute"
-        />
 
-        {/* Withdraw */}
-        <FormSection
-          title="Withdraw from Campaign"
-          inputs={[{ id: "campaignId", label: "Campaign ID", type: "number" }]}
-          onSubmit={(e) => {
-            e.preventDefault();
-            // handle withdraw
-          }}
-          buttonText="Withdraw"
-        />
-
-        {/* Get Refund */}
-        <FormSection
-          title="Get Refund from Campaign"
-          inputs={[{ id: "campaignId", label: "Campaign ID", type: "number" }]}
-          onSubmit={(e) => {
-            e.preventDefault();
-            // handle refund
-          }}
-          buttonText="Get Refund"
-        />
-
-        {/* Get Campaign Details */}
-        <FormSection
-          title="Get Campaign Details"
-          inputs={[{ id: "campaignId", label: "Campaign ID", type: "number" }]}
-          onSubmit={(e) => {
-            e.preventDefault();
-            // handle get details
-          }}
-          buttonText="Get Details"
-        />
       </div>
     </main>
   );
 }
 
-function FormSection({ title, inputs, onSubmit, buttonText }) {
-  return (
-    <section className="mb-10 bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-2xl font-semibold mb-4">{title}</h2>
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        {inputs.map(({ id, label, type }) => (
-          <div key={id} className="flex flex-col">
-            <label htmlFor={id} className="mb-1">
-              {label}
-            </label>
-            <input
-              id={id}
-              type={type}
-              className="p-3 border border-gray-300 rounded-md"
-            />
-          </div>
-        ))}
-        <button
-          type="submit"
-          className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition self-start"
-        >
-          {buttonText}
-        </button>
-      </form>
-    </section>
-  );
-}
+// function FormSection({ title, inputs, onSubmit, buttonText }) {
+//   return (
+//     <section className="mb-10 bg-white shadow-md rounded-lg p-6">
+//       <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+//       <form onSubmit={onSubmit} className="flex flex-col gap-4">
+//         {inputs.map(({ id, label, type }) => (
+//           <div key={id} className="flex flex-col">
+//             <label htmlFor={id} className="mb-1">
+//               {label}
+//             </label>
+//             <input
+//               id={id}
+//               type={type}
+//               className="p-3 border border-gray-300 rounded-md"
+//             />
+//           </div>
+//         ))}
+//         <button
+//           type="submit"
+//           className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition self-start"
+//         >
+//           {buttonText}
+//         </button>
+//       </form>
+//     </section>
+//   );
+// }
 
 export default Campaigns;

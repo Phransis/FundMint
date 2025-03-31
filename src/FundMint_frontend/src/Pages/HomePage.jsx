@@ -41,7 +41,7 @@ export default function HomePage() {
             ICP.
           </p>
           <Link
-            to="/dashboard"
+            to="/test"
             className="mt-6 px-6 py-3 bg-lime-300 rounded-xl hover:bg-lime-500 transition"
           >
             Get Started
