@@ -24,8 +24,6 @@ function CampaignDetails() {
       const data = await FundMint_backend.getCampaignById(numericId);
       console.log("Campaign data:", data);
       setCampaign(data);
-      console.log(data[0].milestones);
-      
     } catch (err) {
       console.error("Error fetching campaign details:", err);
       setError(err instanceof Error ? err : new Error(String(err)));
@@ -237,36 +235,6 @@ function CampaignDetails() {
           )}
         </div>
       </div>
-      {/* {contributions.milestones.length > 0 && (
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h2 className="text-2xl font-bold mb-4">Milestones</h2>
-          <ul className="list-disc pl-6">
-            {contributions.milestones.map((milestone, index) => (
-              <li key={index} className="mb-2">
-                {milestone.description}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      <section className="py-16 px-8 md:px-16 lg:px-32 bg-gray-100">
-        <h2 className="text-3xl font-bold text-center mb-10">Testimonials</h2>
-        <div className="flex flex-col items-center">
-          <p className="text-lg max-w-2xl text-center">
-            "This is a great platform for funding projects!"
-          </p>
-        </div>
-        <div className="flex flex-col items-center mt-8">
-          <p className="text-lg max-w-2xl text-center">
-            "I love the transparency and ease of use."
-          </p>
-        </div>
-        <div className="flex flex-col items-center mt-8">
-          <p className="text-lg max-w-2xl text-center">
-            "FundMint has made fundraising so much easier!"
-          </p>
-        </div>
-      </section>   */}
     </>
   );
 }
