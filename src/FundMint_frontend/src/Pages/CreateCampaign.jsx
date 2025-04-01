@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FundMint_backend } from "declarations/FundMint_backend";
 
-export default function Test() {
+export default function CreateCampaign() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
@@ -14,6 +14,23 @@ export default function Test() {
   const [milestones, setMilestones] = useState([]);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [principal, setPrincipal] = useState("");
+
+  useEffect(() => {
+    const getPrincipal = async () => {
+      try {
+        const principal = await FundMint_backend.getPrincipal();
+        setPrincipal(principal);
+        console.log("Principal:", principal);
+        
+      } catch (error) {
+        console.error("Error fetching principal:", error);
+      }
+    };
+    getPrincipal();
+    // const second = setInterval(getPrincipal, 5000);
+  }, [])
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,6 +96,7 @@ export default function Test() {
         deadline: BigInt(
           Math.floor(new Date(formData.deadline).getTime() / 1000)
         ), // Unix timestamp in seconds
+        principal: principal,
         milestones: milestones.map((m) => ({
           title: m.title,
           description: m.description,
@@ -97,7 +115,8 @@ export default function Test() {
       );
 
       console.log("Campaign created:", result);
-      navigate("/campaigns");
+      // navigate(`/campaign/${result}`);
+      navigate(`/campaigns`);
     } catch (error) {
       console.error("Error creating campaign:", error);
       setErrors({ submit: error.message });
@@ -319,7 +338,7 @@ export default function Test() {
           <button
             type="button"
             onClick={addMilestone}
-            className="mt-2 inline-flex items-center px-3 py-1 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200"
+            className="mt-2 inline-flex items-center px-3 py-1 border border-transparent text-sm leading-4 font-medium rounded-md bg-lime-300 hover:bg-lime-500"
           >
             Add Milestone
           </button>
@@ -336,7 +355,7 @@ export default function Test() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+            className={`px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium  bg-lime-300 hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
               isSubmitting ? "opacity-70 cursor-not-allowed" : ""
             }`}
           >

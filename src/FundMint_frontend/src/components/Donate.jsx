@@ -113,7 +113,7 @@ export default function DonateToCampaign() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium  bg-lime-300 hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+            className={`w-full bg-lime-300 hover:bg-lime-500  py-3 px-6 rounded-lg font-medium transition-colors ${
               isSubmitting ? "opacity-70 cursor-not-allowed" : ""
             }`}
           >

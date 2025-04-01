@@ -157,9 +157,9 @@ function CampaignDetails() {
                   <DonateToCampaign />
 
                   {/* Fund Button */}
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-colors">
+                  {/* <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-colors">
                     Fund This Campaign
-                  </button>
+                  </button> */}
                 </div>
                 {/* Campaign Story
                 <div className="bg-white p-6 rounded-lg shadow-sm mb-8">

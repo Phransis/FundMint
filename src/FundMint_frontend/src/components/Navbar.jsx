@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { savePrincipal } from "../Utils/Auth";
 // import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [address, setAddress] = useState("");
-  const [balance, setBalance] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -17,12 +17,15 @@ export default function Navbar() {
     setLoading(true);
     setError(null);
     try {
-      const principal = await window.ic.plug.requestConnect();
-      console.log(`The connected user's principal is:`, principal);
-
+      await window.ic.plug.requestConnect();
+      const principal = window.ic.plug.principalId
+      console.log(
+        `The connected user's principal is:`,
+        principal
+      );
+      savePrincipal(principal);
       setAddress(principal.toString());
-      console.log(`The connected user's public key is:`, publicKey);
-    } catch (e) {
+     } catch (e) {
       console.log(e);
     } finally {
       setLoading(false);
@@ -101,7 +104,7 @@ export default function Navbar() {
               {loading
                 ? "Connecting..."
                 : address
-                ? `Connected: ${address.slice(0, 6)}...`
+                ? ` ${address.slice(0, 5)}...${address.slice(-8)}`
                 : "Connect Wallet"}
               {/* {address} */}
             </button>

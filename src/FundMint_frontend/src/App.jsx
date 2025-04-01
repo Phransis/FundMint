@@ -5,7 +5,7 @@ import Campaigns from "./Pages/Campaigns";
 import Dashboard from "./Pages/Dashboard";
 import HomePage from "./Pages/HomePage";
 import Layout from "./Layout/Layout";
-import Test from "./Pages/Test";
+import CreateCampaign from "./Pages/CreateCampaign";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             <Route path="/campaigns" element={<Campaigns />} />
             <Route path="/campaign/:id" element={<CampaignDetails />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/create-campaign" element={<CreateCampaign />} />
 
             <Route path="*" element={<div>Not Found</div>} />
           </Route>
