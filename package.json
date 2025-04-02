@@ -3,7 +3,7 @@
     "node": ">=16.0.0",
     "npm": ">=7.0.0"
   },
-  "name": "fundmint",
+  "name": "FundMint",
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "prebuild": "echo 'Skipping dfx generate - using pre-generated filest",
