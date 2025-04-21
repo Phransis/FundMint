@@ -5,6 +5,10 @@ import Principal "mo:base/Principal";
 import Nat "mo:base/Nat";
 import Int "mo:base/Int";
 import Order "mo:base/Order";
+import Blob "mo:base/Blob";
+import HashMap "mo:base/HashMap";
+import Text "mo:base/Text";
+import Iter "mo:base/Iter";
 
 actor Fundmint {
 
@@ -41,6 +45,55 @@ actor Fundmint {
 
   stable var campaigns : [Campaign] = [];
   stable var contributions : [Contribution] = [];
+
+  // type ImageData = Blob;
+  // let images = HashMap.HashMap<Text, ImageData>(10, Text.equal, Text.hash);
+
+  // public shared (msg) func uploadImage(name : Text, data : ImageData) : async Text {
+  //   let imageSize = Array.size(Blob.toArray(data));
+
+  //   if (imageSize > 10_000_000) { // 10 MB limit
+  //     throw Error.reject("Image size exceeds 10 MB limit.");
+  //   };
+  //   if (images.get(name) != null) {
+  //     throw Error.reject("Image with this name already exists.");
+  //   };
+  //   if (name == "") {
+  //     throw Error.reject("Image name cannot be empty.");
+  //   };
+  //   if (Array.size(Blob.toArray(data)) == 0) {
+  //     throw Error.reject("Image data cannot be empty.");
+  //   };
+  //   images.put(name, data);
+  //   return "Image uploaded successfully!";
+  // };
+  // public query func getImage(name : Text) : async ?ImageData {
+  //   return images.get(name);
+  // };
+  // public query func getImageNames() : async [Text] {
+  //   return Iter.toArray(images.keys());
+  // };
+
+    type ImageData = Blob;
+
+  // In-memory store: image name -> image bytes
+  let images = HashMap.HashMap<Text, ImageData>(10, Text.equal, Text.hash);
+
+  // Upload image
+  public shared(msg) func uploadImage(name: Text, data: Blob) : async Text {
+    images.put(name, data);
+    return "Image uploaded successfully";
+  };
+
+  // Get image by name
+  public query func getImage(name: Text) : async ?Blob {
+    images.get(name);
+  };
+
+  // Optional: list all uploaded image names
+  public query func list_images() : async [Text] {
+    Iter.toArray(images.keys());
+  };
 
   public shared (msg) func getPrincipal() : async Principal {
     return msg.caller;

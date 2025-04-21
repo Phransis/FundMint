@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { savePrincipal } from "../Utils/Auth";
+import { savePrincipal, getPrincipal } from "../Utils/Auth";
+import { Link } from "react-router-dom";
 // import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
@@ -9,23 +10,34 @@ export default function Navbar() {
   const [error, setError] = useState(null);
 
   const connectWallet = async () => {
+    // Canister Ids
+    const nnsCanisterId =
+      "bkyz2-fmaaa-aaaaa-qaaaq-cai";
+
+    // Whitelist
+    const whitelist = [nnsCanisterId];
+
+    // Host
+    const host = "http://localhost:3000/";
     if (!window.ic?.plug) {
       alert("Plug Wallet is not installed!");
       // Optionally redirect to Plug's website
       window.open("https://plugwallet.ooo/", "_blank");
     }
-    setLoading(true);
+    // setLoading(true);
     setError(null);
     try {
-      await window.ic.plug.requestConnect();
-      const principal = window.ic.plug.principalId
-      console.log(
-        `The connected user's principal is:`,
-        principal
-      );
+      await window.ic.plug.requestConnect({
+        whitelist,
+        host,
+        timeout: 50000,
+      });
+      const principal = window.ic.plug.principalId;
+      console.log(`The connected user's principal is:`, principal);
+      // setLoading(false);
       savePrincipal(principal);
       setAddress(principal.toString());
-     } catch (e) {
+    } catch (e) {
       console.log(e);
     } finally {
       setLoading(false);
@@ -47,6 +59,7 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+
     // connectWallet();
   }, []);
   // return (
@@ -71,30 +84,30 @@ export default function Navbar() {
             <h1 className="text-3xl font-bold text-lime-300">FundMint</h1>
           </div>
           <div className="hidden md:flex space-x-6">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="text-gray-700 hover:text-lime-300 transition duration-300"
             >
               Home
-            </a>
-            <a
-              href="campaigns"
+            </Link>
+            <Link
+              to="campaigns"
               className="text-gray-700 hover:text-lime-300 transition duration-300"
             >
               Campaigns
-            </a>
-            <a
-              href="about"
+            </Link>
+            <Link
+              to="about"
               className="text-gray-700 hover:text-lime-300 transition duration-300"
             >
               About
-            </a>
-            <a
-              href="contact"
+            </Link>
+            <Link
+              to="contact"
               className="text-gray-700 hover:text-lime-300 transition duration-300"
             >
               Contact
-            </a>
+            </Link>
           </div>
           <div className="flex items-center space-x-4">
             <button

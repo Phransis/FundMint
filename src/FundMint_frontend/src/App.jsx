@@ -6,6 +6,7 @@ import Dashboard from "./Pages/Dashboard";
 import HomePage from "./Pages/HomePage";
 import Layout from "./Layout/Layout";
 import CreateCampaign from "./Pages/CreateCampaign";
+import AboutPage from "./Pages/AboutPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
+            <Route path="/about" element={<AboutPage/>} />
             <Route path="/campaigns" element={<Campaigns />} />
             <Route path="/campaign/:id" element={<CampaignDetails />} />
             <Route path="/dashboard" element={<Dashboard />} />
