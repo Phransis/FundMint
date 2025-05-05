@@ -351,7 +351,7 @@ actor Fundmint {
     let campaignOpt = findCampaign(campaignId);
 
     switch (campaignOpt) {
-      case (null) { throw Error.reject("Campaign not found") };
+      case (null) { throw Error.reject("Campaign not found!") };
       case (?campaign) {
         if (msg.caller != campaign.owner) {
           throw Error.reject("Unauthorized: Only the owner can update the campaign.");
