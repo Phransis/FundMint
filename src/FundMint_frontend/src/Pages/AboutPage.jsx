@@ -32,6 +32,7 @@ function AboutPage() {
         console.log("✅ Upload success:", result);
         setStatus("✅ Upload complete!");
       } catch (err) {
+        setStatus("❌ Upload failed.", message.err);
         console.error("❌ Upload failed:", err);
         setStatus("❌ Upload failed.");
       } finally {
