@@ -106,15 +106,15 @@ actor Fundmint {
     let now_sec = now_ns / 1_000_000_000;
     return now_sec;
   };
-  public query func getTimeInMilliseconds() : async Int {
-    let now_ns = Time.now();
-    let now_ms = now_ns / 1_000_000;
-    return now_ms;
-  };
-  public query func getTimeInNanoseconds() : async Int {
-    let now_ns = Time.now();
-    return now_ns;
-  };
+  // public query func getTimeInMilliseconds() : async Int {
+  //   let now_ns = Time.now();
+  //   let now_ms = now_ns / 1_000_000;
+  //   return now_ms;
+  // };
+  // public query func getTimeInNanoseconds() : async Int {
+  //   let now_ns = Time.now();
+  //   return now_ns;
+  // };
   public query func getTimeInMicroseconds() : async Int {
     let now_ns = Time.now();
     let now_us = now_ns / 1_000;
