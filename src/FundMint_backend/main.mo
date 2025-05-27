@@ -296,12 +296,45 @@ actor Fundmint {
     };
   };
 
+  public func getCampaignStatus(campaignId : Nat) : async Text {
+    let campaignOpt = findCampaign(campaignId);
+    switch (campaignOpt) {
+      case (null) { return "Campaign not found" };
+      case (?campaign) {
+        if (campaign.isClosed) {
+          return "Campaign '" # campaign.title # "' is closed.";
+        } else if (Time.now() > campaign.deadline) {
+          let updatedCampaign = { campaign with isClosed = true }; // Automatically close if deadline is reached
+          campaigns := Array.map<Campaign, Campaign>(
+            campaigns,
+            func(c : Campaign) : Campaign {
+              if (c.id == campaignId) { updatedCampaign } else { c };
+            },
+          );
+          return "Campaign '" # campaign.title # "' has reached its deadline.";
+        } else {
+          return "Campaign '" # campaign.title # "' is still open.";
+        };
+      };
+    };
+  };
+
   public query func getCampaigns() : async [Campaign] {
-    return campaigns;
+    // Sort campaigns by timestamp (newest first)
+    let sortedCampaigns = Array.sort(campaigns, func (a: Campaign, b: Campaign) : Order.Order {
+      if (a.timestamp > b.timestamp) { #less } // Newest first
+      else if (a.timestamp < b.timestamp) { #greater }
+      else { #equal }
+    });
+    return sortedCampaigns;
   };
 
   public query func getCampaignById(campaignId : Nat) : async ?Campaign {
-    return findCampaign(campaignId);
+    let campaignOpt = findCampaign(campaignId);
+    switch (campaignOpt) {
+      case (null) { return null };
+      case (?campaign) { return ?campaign; };
+    };
   };
 
   public query func getAllContributors(campaignId : Nat) : async ?[Principal] {
