@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FundMint_backend } from "declarations/FundMint_backend";
-import TwoHands from "../assets/two-hands.jpg"; // Ensure this path is correct
+import TwoHands from "../assets/Background.png"; // Ensure this path is correct
 import CampaignCard from "../components/CampaignCard";
 
 export default function HomePage() {
@@ -21,22 +21,25 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="py-16 px-8 md:px-16 lg:px-32">
+    <div className=" ">
       <div className=" mx-auto">
         {/* Hero Section */}
         <section
-          className="relative flex flex-col items-center justify-center text-center h-screen rounded-xl bg-cover bg-center"
+          className="relative flex flex-col items-center justify-center text-center h-screen  bg-cover bg-center"
           style={{ backgroundImage: `url(${TwoHands})` }}
         >
-          <motion.h1
-            className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text"
+          {/* <motion.h1
+            className="text-6xl  font-extrabold bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            FundMint - AI NFT Crowdfunding
-          </motion.h1>
-          <p className="text-lg mt-4 max-w-2xl text-black">
+            Solve problems around the world with FundMint
+          </motion.h1> */}
+          <p className="text-6xl font-extrabold text-white">
+            Solve problems around the world with FundMint 
+          </p>
+          <p className="text-4xl mt-4 max-w-2xl text-white">
             Fund projects, generate AI-powered NFTs, and shape the future on
             ICP.
           </p>
@@ -135,14 +138,13 @@ export default function HomePage() {
                     description: campaign.description,
                     imageUrl: { TwoHands },
                     id: campaign.id,
-                    
                   }}
                 />
               ))}
             </div>
-          ): (
-              <p className="text-center text-gray-400">No campaigns found.</p>
-            )}
+          ) : (
+            <p className="text-center text-gray-400">No campaigns found.</p>
+          )}
         </section>
 
         {/* Testimonials */}
