@@ -77,13 +77,11 @@ export default function Navbar() {
   // );
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className=" shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
             <h1 className="text-3xl font-bold text-lime-300">FundMint</h1>
-          </div>
-          <div className="hidden md:flex space-x-6">
             <Link
               to="/"
               className="text-gray-700 hover:text-lime-300 transition duration-300"
@@ -109,7 +107,14 @@ export default function Navbar() {
               Contact
             </Link>
           </div>
+          <div className="hidden md:flex space-x-6">
+          </div>
           <div className="flex items-center space-x-4">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-300"
+            />
             <button
               className="bg-lime-300 text-black px-4 py-2 rounded-lg hover:bg-lime-500 transition duration-300"
               onClick={connectWallet}
