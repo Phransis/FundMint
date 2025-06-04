@@ -25,7 +25,7 @@ export default function HomePage() {
       <div className=" mx-auto">
         {/* Hero Section */}
         <section
-          className="relative flex flex-col items-center justify-center text-center h-screen  bg-cover bg-center"
+          className=" flex flex-col items-center justify-center text-center h-screen  bg-cover bg-center"
           style={{ backgroundImage: `url(${TwoHands})` }}
         >
           {/* <motion.h1
