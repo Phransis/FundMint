@@ -112,7 +112,7 @@ function Footer() {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-3 ">
+        <div className=" my-8 grid grid-cols-3 ">
           <div className="text-3xl font-bold text-lime-300">FundMint</div>
           <div></div>
           <div className="text-gray-400">
