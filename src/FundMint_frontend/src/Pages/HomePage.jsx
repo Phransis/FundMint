@@ -37,7 +37,7 @@ export default function HomePage() {
             Solve problems around the world with FundMint
           </motion.h1> */}
           <p className="text-6xl font-extrabold text-white">
-            Solve problems around the world with FundMint 
+            Solve problems around the world with FundMint
           </p>
           <p className="text-4xl mt-4 max-w-2xl text-white">
             Fund projects, generate AI-powered NFTs, and shape the future on
@@ -49,6 +49,12 @@ export default function HomePage() {
           >
             Get Started
           </Link>
+          <div className="bg-white p-6  rounded-lg shadow-lg hover:bg-gray-100">
+            <h3 className="text-xl font-semibold">Start a Campaign</h3>
+            <p className="text-gray-400">
+              Launch your project and set a funding goal.
+            </p>
+          </div>
         </section>
         <section>
           <div className="  py-16 px-8 md:px-16 lg:px-32 ">
