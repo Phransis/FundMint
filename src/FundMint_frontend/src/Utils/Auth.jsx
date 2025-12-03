@@ -7,7 +7,7 @@ export const savePrincipal = (principal) => {
 };
 
 // Get principal from session storage
-export const getPrincipal = () => {
+export const getPrincipal = async () => {
   const principalString = sessionStorage.getItem("principal");
   console.log("Principal from storage:", principalString);
   

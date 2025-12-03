@@ -159,10 +159,12 @@ actor Fundmint {
     title : Text,
     description : Text,
     target : Nat,
+    // owner : Principal,
     deadline : Time.Time,
     milestones : [Milestone],
   ) : async Text {
-    let owner = msg.caller;
+    let owner : Principal = msg.caller;
+    // let owner = owner;
     let newId = Array.size(campaigns) + 1;
 
     if (target == 0) {
